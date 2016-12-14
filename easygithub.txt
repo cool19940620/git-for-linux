@@ -83,8 +83,8 @@
 	git push <origin> <master> 	;若master沒有追蹤分支，輸入 git push 遠端Repository 遠端branch名稱  
 	
 從遠端下載到本地:
-	git pull			;若master有追蹤分支,打這行即可
-	git pull <origin> <master>	;若master沒有追蹤分支，輸入 git pull 遠端Repository 遠端branch名稱 資料 
+	git pull			;若master有tracking,打這行即可
+	git pull <origin> <master>	;若master沒有tracking，輸入 git pull 遠端Repository 遠端branch名稱 資料 
 	git fetch <origin>		;取得 Paul 上傳的且本地端儲存庫沒有的更新
 	;執行 pull，遠端數據庫的內容會自動合併。但是，有時候只是想確認遠端數據庫的內容卻不是真的想合併，在這種情況下，請使用 fetch。
 	
