@@ -32,7 +32,9 @@
 		例 : git commit -a	;-a表示將所有未被 add 的檔案一併 add 進來
 	5.推送到遠端Repository:		;git push 遠端Repository 遠端branch名稱
 		例 : git push origin master
-		
+	6.將本地的 branch tracking 成遠端的branch:
+		例 : git branch --set-upstream master origin/master 	
+	
 	*Clone(複製)別人的 Repository
 	git clone https://github.com/username/Repository.git 資料夾名稱 ;資料夾名稱沒打,則為預設資料夾 
 
