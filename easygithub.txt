@@ -47,6 +47,9 @@
 	git add <file1> 	;選擇加入檔案file1(可多筆)
 	git add .		;將修改或新增的檔案一次全部加入
 	git add -i		;互動模式加入檔案
+
+刪除檔案:
+	git rm <file1> 	;選擇刪除檔案file1(可多筆)
 	
 提交檔案:
 	git commit			;提交檔案(強烈建議在 commit 的時候要盡量清楚表達這次 commit 的內容為何)
