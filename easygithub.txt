@@ -32,7 +32,7 @@
 		例 : git commit -a	;-a表示將所有未被 add 的檔案一併 add 進來
 	5.推送到遠端Repository:		;git push 遠端Repository 遠端branch名稱
 		例 : git push origin master
-	6.將本地的 branch tracking 成遠端的branch:
+	6.將本地以有的 branch 追蹤 遠端的branch:
 		例 : git branch --set-upstream master origin/master 	
 	
 	*Clone(複製)別人的 Repository
@@ -70,7 +70,7 @@
 遠端基本指令:
 	git remote add origin https://github.com/username/Repository.git;新增遠端資料庫
 	git remote rm origin 						;移除遠端儲存庫，若要更名後面加更名名稱
-	git branch --track <本地branch> <遠端Repository/branch名稱>	;追蹤分支
+	git branch --track <本地branch> <遠端Repository/branch名稱>	;建立一個本地分支並追蹤遠端分支
 	git checkout --track -b <本地branch> origin/branch 		;將遠端的 branch checkout 回來並建立一個新的 local branch，
 									;加上 --track 表示你之後還要pull、push回去，所以請 Git 記住對應關係。
 	git branch -r							;顯示 local 有追蹤的遠端 branch
