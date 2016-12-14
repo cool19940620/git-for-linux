@@ -1,0 +1,111 @@
+1.首先安裝 git: 
+	apt-get install git-core
+2.設定git:
+	git config --global user.name "cool19940620"			;使用者名子
+	git config --global user.email "cool19940620@gmail.com"		;github信箱
+	git config --global credential.helper 'cache --timeout=7200' 	;Github 的登入認證，暫存 2 小時
+	git config --global core.editor nano				;指定預設的編輯器為nano
+								
+	alias 的功能:							
+		git config --global alias.st status			;例如你可以將 git status 縮寫為 git st
+		
+	希望Git去忽略空白的變化:
+		git config --global apply.whitespace nowarn 		;空白對有些語言是有影響的(像是Ruby)
+		
+	希望Git輸出輸出時加上顏色讓我們更容易閱讀：
+		git config --global color.ui true
+		
+	檢查設定:
+		git config --list					;命令列出所有Git能找到的設定值
+									;Git 的設定檔是儲存在你的家目錄的.gitconfig 隱藏檔中(~/.gitconfig)
+		
+3.開始使用Git
+;有兩種方法可以建立一個 Git 的 Repository
+
+	*自己建立一個新的 Repository 到遠端
+	1.將目錄切換到 專案資料夾底下後輸入git init
+	2.新增遠端Repository  		; git remote add remote名稱 remote網址
+		例 : git remote add origin https://github.com/username/Repository.git 
+	3.加入檔案			;選擇加入檔案file1(可多筆)
+		例 : git add <file1> 
+	4.提交檔案			;提交檔案(強烈建議在 commit 的時候要盡量清楚表達這次 commit 的內容為何)
+		例 : git commit -a	;-a表示將所有未被 add 的檔案一併 add 進來
+	5.推送到遠端Repository:		;git push 遠端Repository 遠端branch名稱
+		例 : git push origin master
+		
+	*Clone(複製)別人的 Repository
+	git clone https://github.com/username/Repository.git 資料夾名稱 ;資料夾名稱沒打,則為預設資料夾 
+
+4.Git的基本功
+	
+檢查目前Git的狀態:
+	git status
+
+加入檔案:
+	git add <file1> 	;選擇加入檔案file1(可多筆)
+	git add .		;將修改或新增的檔案一次全部加入
+	git add -i		;互動模式加入檔案
+	
+提交檔案:
+	git commit			;提交檔案(強烈建議在 commit 的時候要盡量清楚表達這次 commit 的內容為何)
+	git commit -m "commit內容"	;快速提交檔案 
+	git commit -am "commit內容"	;若使用 -am 的話還能將所有未被 add 的檔案一併 add 進來
+					;( 如果是第一次新增還沒有被 add 的檔案是不會一起加入的，只有之前已經被 add 過 commit 的檔案才會被加入 )
+					;若使用 -v 的話會列出更動的紀錄
+查看過去 commit 的紀錄:
+	git log				;查看過去 commit 的紀錄
+	git log --stat			;更詳細 commit 的紀錄
+	git log -p			;超詳細 commit 的紀錄
+		
+分支branch:
+	git branch <new_branch_name> 				;建立本地 local branch
+	git branch -m <old_name> <new_name> 			;改分支名字 (如果有同名會失敗，改用 -M 可以強制覆蓋)
+	git branch 						;列出目前有那些 branch 以及目前在那個 branch
+	git checkout <branch_name> 				;切換 branch
+	git checkout -b <new_branch_name> (<from_branch_name>) 	;本地建立 branch 並立即 checkout 切換過去
+	git branch -d <branch_name> 				;刪除 local branch
+	
+遠端基本指令:
+	git remote add origin https://github.com/username/Repository.git;新增遠端資料庫
+	git remote rm origin 						;移除遠端儲存庫，若要更名後面加更名名稱
+	git branch --track <本地branch> <遠端Repository/branch名稱>	;追蹤分支
+	git checkout --track -b <本地branch> origin/branch 		;將遠端的 branch checkout 回來並建立一個新的 local branch，
+									;加上 --track 表示你之後還要pull、push回去，所以請 Git 記住對應關係。
+	git branch -r							;顯示 local 有追蹤的遠端 branch
+	git remote show origin 						;顯示遠端 server 的 branch
+	git push origin 						:<branch> ;刪除遠端的 branch
+	git remote 							;顯示所有的遠端儲存庫,也可以再加上 -v 參數，將會在名稱後方顯示其URL
+
+推送到遠端Repository:
+	git push			;若master有追蹤分支,打這行即可
+	git push <origin> <master> 	;若master沒有追蹤分支，輸入 git push 遠端Repository 遠端branch名稱  
+	
+從遠端下載到本地:
+	git pull			;若master有追蹤分支,打這行即可
+	git pull <origin> <master>	;若master沒有追蹤分支，輸入 git pull 遠端Repository 遠端branch名稱 資料 
+	git fetch <origin>		;取得 Paul 上傳的且本地端儲存庫沒有的更新
+	;執行 pull，遠端數據庫的內容會自動合併。但是，有時候只是想確認遠端數據庫的內容卻不是真的想合併，在這種情況下，請使用 fetch。
+	
+5.大概流程
+
+新增or修改檔案 => 加入 檔案 (git add) => 提交檔案( git commit ) =>推送到遠端
+
+6.補充
+
+有些檔案我們不希望加入版本控制的追蹤，例如說Database的schema或是一些log檔，
+這時候你可以將他們加入 .gitignore 中來讓 Git 忽略他們，使用編輯器來打開你的 .gitignore 檔案。;(~/.gitconfig)
+
+$ vim .gitignore
+在這邊假設我想將 Mac 自動產生的.DS_Store， vim 的 swp 暫存檔及 log 檔忽略，我便分行加入：
+
+.DS_Store
+*.swp
+log/*.log
+	
+	
+	
+	
+	
+	
+	
+	
